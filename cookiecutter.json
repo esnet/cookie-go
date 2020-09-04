@@ -14,5 +14,6 @@
     "use_viper_config": "y",
     "use_jsonpath_config": "y",
     "use_cobra_cmd": "y",
+    "use_go_funk": "y",
     "use_ci": ["travis", "none"]
 }

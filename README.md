@@ -1,13 +1,12 @@
 # cookiecutter-golang
 
-[![Build Status](https://travis-ci.org/lacion/cookiecutter-golang.svg?branch=master)](https://travis-ci.org/lacion/cookiecutter-golang)
+[![Build Status](https://travis-ci.org/esnet/cookie-go.svg?branch=master)](https://travis-ci.org/lesnet/cookie-go)
 
 Powered by [Cookiecutter](https://github.com/audreyr/cookiecutter), Cookiecutter Golang is a framework for jumpstarting production-ready go projects quickly.
 
 ## Features
 
-- Generous `Makefile` with management commands
-- Uses `go dep` (with optional go module support *requires go 1.11*)
+- Uses `go mod` (with optional go module support *requires go 1.11*)
 - injects build time and git hash at build time.
 
 ## Optional Integrations
@@ -15,13 +14,14 @@ Powered by [Cookiecutter](https://github.com/audreyr/cookiecutter), Cookiecutter
 - Can use [viper](https://github.com/spf13/viper) for env var config
 - Can use [cobra](https://github.com/spf13/cobra) for cli tools
 - Can use [logrus](https://github.com/sirupsen/logrus) for logging
+- Can use [go-funk](https://github.com/thoas/go-funk) for collection manipulation
 - Can create dockerfile for building go binary and dockerfile for final go binary (no code in final container)
 - If docker is used adds docker management commands to makefile
-- Option of TravisCI, CircleCI or None
+- Option of TravisCI, or None
 
 ## Constraints
 
-- Uses `dep` or `mod` for dependency management
+- Uses `mod` for dependency management
 - Only maintained 3rd party libraries are used.
 
 This project now uses docker multistage builds, you need at least docker version v17.05.0-ce to use the docker file in this template, [you can read more about multistage builds here](https://www.critiqus.com/post/multi-stage-docker-builds/).
@@ -52,22 +52,22 @@ $ brew install cookiecutter
 
 Finally, to run it based on this template, type:
 ```console
-$ cookiecutter https://github.com/safaci2000/cookiecutter-golang.git
+$ cookiecutter https://github.com/esnet/cookie-go.git
 ```
 
 You will be asked about your basic info (name, project name, app name, etc.). This info will be used to customize your new project.
 
-Warning: After this point, change 'Luis Morales', 'lacion', etc to your own information.
+Warning: After this point, change 'Code Monkey', 'esnet', etc to your own information.
 
 Answer the prompts with your own desired [options](). For example:
 ```console
-full_name [Luis Morales]: Luis Morales
-github_username [lacion]: lacion
+full_name [Code Monkey]: Code Monkey
+github_username [esnet]: esnet
 app_name [mygolangproject]: echoserver
 project_short_description [A Golang project.]: Awesome Echo Server
-docker_hub_username [lacion]: lacion
-docker_image [lacion/docker-alpine:latest]: lacion/docker-alpine:latest
-docker_build_image [lacion/docker-alpine:gobuildimage]: lacion/docker-alpine:gobuildimage
+docker_hub_username [esnet]: esnet
+docker_image [esnet/docker-alpine:latest]: esnet/docker-alpine:latest
+docker_build_image [esnet/docker-alpine:gobuildimage]: esnet/docker-alpine:gobuildimage
 use_docker [y]: y
 use_git [y]: y
 use_logrus_logging [y]: y
