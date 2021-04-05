@@ -1,5 +1,4 @@
 # Build Stage
-#FROM {{cookiecutter.docker_build_image}}:{{cookiecutter.docker_build_image_version}} AS build-stage
 FROM golang:{{cookiecutter.docker_build_image_version}}  AS build-stage
 
 LABEL app="build-{{cookiecutter.app_name}}"
