@@ -3,11 +3,12 @@ package cmd
 import (
 	"fmt"
 	"os"
-
+	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.app_name}}/config"
 	"github.com/spf13/cobra"
 )
 
-var cfgFile string
+var configProvider config.Provider
+
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -35,6 +36,8 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize()
+	configProvider = config.Config()
+
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
