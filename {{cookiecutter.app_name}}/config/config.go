@@ -27,11 +27,17 @@ type Provider interface {
 	IsSet(key string) bool
 }
 
-var defaultConfig *viper.Viper
+type ConfigStruct struct {
+	defaultConfig *viper.Viper
+	//grafanaConfig *GrafanaConfig example of a model
+}
+
+var configData *ConfigStruct
+
 
 // Config returns a default config providers
 func Config() Provider {
-	return defaultConfig
+	return configData. defaultConfig
 }
 
 // LoadConfigProvider returns a configured viper instance
@@ -40,19 +46,34 @@ func LoadConfigProvider(appName string) Provider {
 }
 
 func init() {
+	configData = &ConfigStruct{}
 	defaultConfig = readViperConfig("{{cookiecutter.app_name|upper}}")
+	// Additional Modeled configs
+	/*
+	grafana_config := configData.defaultConfig.GetStringMap("grafana")
+	grafana_yaml, _ := yaml.Marshal(grafana_config)
+	err := yaml.Unmarshal([]byte(grafana_yaml), &configData.grafanaConfig)
+	if err == nil {
+		panic(err)
+	}
+	*/
+	
 }
 
 func readViperConfig(appName string) *viper.Viper {
 	v := viper.New()
-	v.SetEnvPrefix(appName)
+	v.SetEnvPrefix("CONFIG") // defines the environment prefix. ie. CONFIG_URL=foobar rather then URL=foobar
+	v.SetConfigName(appName)
 	v.AutomaticEnv()
 
 	// global defaults
-	{% if cookiecutter.use_logrus_logging == "y" %}
 	v.SetDefault("json_logs", false)
 	v.SetDefault("loglevel", "debug")
-	{% endif %}
+	
+	err := v.ReadInConfig()
+	if err != nil {
+	   panic(err)
+	}
 
 	return v
 }
