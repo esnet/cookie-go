@@ -1,6 +1,6 @@
 # cookiecutter-golang
 
-[![Build Status](https://travis-ci.org/esnet/cookie-go.svg?branch=master)](https://travis-ci.org/lesnet/cookie-go)
+[![Build Status](https://travis-ci.org/esnet/cookie-go.svg?branch=master)](https://travis-ci.org/esnet/cookie-go)
 
 Powered by [Cookiecutter](https://github.com/audreyr/cookiecutter), Cookiecutter Golang is a framework for jumpstarting production-ready go projects quickly.
 
