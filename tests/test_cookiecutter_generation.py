@@ -11,6 +11,7 @@ from io import open
 PATTERN = '{{(\s?cookiecutter)[.](.*?)}}'
 RE_OBJ = re.compile(PATTERN)
 
+
 @pytest.fixture
 def context():
     return {
@@ -19,13 +20,18 @@ def context():
         'app_name': 'MyTestProject',
         'project_short_description': 'A short description of the project.',
         "docker_hub_username": "lacion",
-        "docker_image": "lacion/docker-alpine:latest",
-        "docker_build_image": "lacion/docker-alpine:gobuildimage",
         "use_docker": "y",
         "use_git": "y",
         "use_logrus_logging": "y",
-        "use_viper_config": "y"
-}
+        "use_jsonpath_config": "y",
+        "use_cobra_cmd": "y",
+        "use_go_funk": "y",
+        "use_viper_config": "y",
+        "docker_build_image": "golang",
+        "docker_build_image_version": "1.16",
+        "use_ci": "gitlab"
+    }
+
 
 def build_files_list(root_dir):
     """Build a list containing absolute paths to the generated files."""
@@ -34,6 +40,7 @@ def build_files_list(root_dir):
         for dirpath, subdirs, files in os.walk(root_dir)
         for file_path in files
     ]
+
 
 def check_paths(paths):
     """Method to check all paths have correct substitutions,
@@ -48,6 +55,7 @@ def check_paths(paths):
             msg = 'cookiecutter variable not replaced in {}'
             assert match is None, msg.format(path)
 
+
 def test_default_configuration(cookies, context):
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
@@ -59,10 +67,12 @@ def test_default_configuration(cookies, context):
     assert paths
     check_paths(paths)
 
+
 @pytest.fixture(params=['use_docker', 'use_git', 'use_logrus_logging', 'use_viper_config'])
 def feature_context(request, context):
     context.update({request.param: 'n'})
     return context
+
 
 def test_disable_features(cookies, feature_context):
     result = cookies.bake(extra_context=feature_context)

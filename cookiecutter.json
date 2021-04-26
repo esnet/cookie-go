@@ -1,13 +1,15 @@
 {
-    "full_name": "csgeek",
-    "github_username": "safaci2000",
-    "app_name": "mygolangproject",
-    "project_short_description": "A Golang project.",
-    "docker_hub_username": "safaci2000",
-    "docker_image": "lacion/alpine-base-image:latest",
-    "docker_build_image": "lacion/alpine-golang-buildimage",
-    "docker_build_image_version": ["1.15.0", "1.13"],
-    "go_mod_or_dep": "mod",
+    "full_name": "UberDev",
+    "github_username": "esnet",
+    "app_name": "project",
+    "project_short_description": "A ESNet Golang project.",
+    "docker_hub_username": "esnet",
+    "docker_build_image": "golang",
+    "docker_runtime_image": "alpine:3.13",
+    "docker_build_image_version": [
+        "1.16",
+        "1.15.0"
+    ],
     "use_docker": "y",
     "use_git": "y",
     "use_logrus_logging": "y",
@@ -15,5 +17,9 @@
     "use_jsonpath_config": "y",
     "use_cobra_cmd": "y",
     "use_go_funk": "y",
-    "use_ci": ["travis", "none"]
+    "use_ci": [
+        "droneci",
+        "gitlab",
+        "none"
+    ]
 }

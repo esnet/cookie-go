@@ -3,5 +3,9 @@ services:
     {{cookiecutter.app_name}}:
         build:
             context: . 
-        image: {{cookiecutter.docker_hub_username}}/{{cookiecutter.app_name}}
+        image: {{cookiecutter.docker_hub_username}}/{{cookiecutter.app_name}}:latest
+        volumes:
+            - ./conf:/opt/{{cookiecutter.app_name}}/bin/conf/
+        ports:
+            - "40000:40000"
 
